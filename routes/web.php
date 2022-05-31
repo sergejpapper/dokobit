@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * File Upload Routes
+ */
+Route::get('/files', 'App\Http\Controllers\FilesController@index')->name('files.index');
+Route::get('/files/add', 'App\Http\Controllers\FilesController@create')->name('files.create');
+Route::post('/files/add', 'App\Http\Controllers\FilesController@store')->name('files.store');
