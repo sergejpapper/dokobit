@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Files</h1>
-    <a href="{{ route('files.create') }}">Add File</a>
+    <a href="{{ route('files.add') }}">Add File</a>
     <table>
         <thead>
         <tr>

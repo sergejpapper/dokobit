@@ -26,9 +26,9 @@ class FilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add()
     {
-        return view('files.create');
+        return view('files.add');
     }
 
     /**
@@ -45,6 +45,11 @@ class FilesController extends Controller
         $size = $request->file->getSize();
         $ip = $request->ip();
 
+        $zip = new \ZipArchive();
+        $zip->open('dokobit.zip', \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        $zip->addFile($request->file, $fileName);
+        $zip->close();
+
         $request->file->move(public_path('file'), $fileName);
 
         File::create([
@@ -54,7 +59,7 @@ class FilesController extends Controller
             //'ip' => $ip ToDo: kažkodėl neveikia, reikia patikrinkti kodėl
         ]);
 
-        return redirect()->route('files.index')->withSuccess(__('File added successfully.'));
+        return response()->download('dokobit.zip');
     }
 
 }

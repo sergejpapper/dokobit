@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 
 /**
- * File Upload Routes
+ * File upload routes
  */
 Route::get('/files', 'App\Http\Controllers\FilesController@index')->name('files.index');
-Route::get('/files/add', 'App\Http\Controllers\FilesController@create')->name('files.create');
+Route::get('/files/add', 'App\Http\Controllers\FilesController@add')->name('files.add');
 Route::post('/files/add', 'App\Http\Controllers\FilesController@store')->name('files.store');
